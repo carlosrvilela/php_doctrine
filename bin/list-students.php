@@ -1,6 +1,7 @@
 <?php
 
 use Projeto\Doctrine\Entity\Phone;
+use Projeto\Doctrine\Entity\Course;
 use Projeto\Doctrine\Entity\Student;
 use Projeto\Doctrine\Helper\EntityManagerCreator;
 
@@ -14,6 +15,9 @@ $studentsList = $studentRepository->findAll();
 foreach ($studentsList as $student){
     print "ID: $student->id\nNome: $student->name\nTelefones: ";
     print implode(separator: ', ', array:($student->getPhones()->map(fn (Phone $phone) => $phone->number))->toArray());
+
+    print "\nCursos: ";
+    print implode(separator: ', ', array:($student->getCourses()->map(fn (Course $course) => $course->name))->toArray());
 
     print"\n\n";
 }
